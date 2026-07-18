@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISFEGAN | Desain Feed Elegan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIABEL GLOBAL === */
+        :root {
+            --bg: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #808080;
+            --border-dim: #1a1a1a;
+            --border-bright: #ffffff;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* === LATAR BELAKANG & TEKSTUR === */
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* === STRUKTUR LAYOUT === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* === HEADER === */
+        header {
+            margin-bottom: 6rem;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            border: 1px solid var(--border-dim);
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* === GRID HARGA === */
+        .pricing-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem; /* Dikurangi untuk memberi ruang pada banner UMKM */
+        }
+
+        .card {
+            border: 1px solid var(--border-dim);
+            padding: 3rem 2rem;
+            background: transparent;
+            transition: all 0.5s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--text-primary);
+            transition: width 0.5s var(--ease);
+        }
+
+        .card:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .card-header {
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .card-price span {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            border-top: 1px solid var(--border-dim);
+            padding-top: 1.5rem;
+        }
+
+        /* === BANNER UMKM SPESIAL === */
+        .umkm-banner {
+            border: 1px dashed #404040;
+            padding: 3rem;
+            margin-bottom: 6rem;
+            position: relative;
+            transition: all 0.5s var(--ease);
+            background: rgba(10, 10, 10, 0.4);
+        }
+
+        .umkm-banner:hover {
+            border-color: var(--border-bright);
+            border-style: solid;
+        }
+
+        .umkm-badge {
+            display: inline-block;
+            background: var(--text-primary);
+            color: var(--bg);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .umkm-banner h3 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .umkm-banner p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .umkm-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .umkm-price span {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        .umkm-terms {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-dim);
+            padding-top: 1.5rem;
+        }
+
+        .umkm-terms strong {
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* === CALL TO ACTION === */
+        .cta-section {
+            text-align: left;
+            border: 1px solid var(--border-dim);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+            transition: border 0.5s var(--ease);
+        }
+
+        .cta-section:hover {
+            border-color: var(--border-bright);
+        }
+
+        .cta-text h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text p {
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--text-primary);
+            color: var(--bg);
+            text-decoration: none;
+            padding: 1.2rem 3rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s var(--ease);
+            border: 1px solid var(--text-primary);
+        }
+
+        .btn:hover {
+            background: var(--bg);
+            color: var(--text-primary);
+            transform: translateX(10px);
+        }
+
+        /* === ANIMASI SCROLL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .cta-section, .umkm-banner { padding: 2rem; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header class="reveal active">
+            <div class="brand-badge">DISFEGAN</div>
+            <h1>Desain Feed<br>Elegan.</h1>
+            <p class="subtitle">Feed IG kamu berantakan kayak kapal pecah? Tenang, mari kita tata ulang. Profil yang mahal berawal dari visual yang tidak menyakiti mata calon klien (atau gebetan).</p>
+        </header>
+
+        <!-- PRICING GRID STANDAR -->
+        <div class="pricing-section">
+            
+            <div class="card reveal delay-1">
+                <div class="card-header">
+                    <div class="card-title">Paket Evolusi</div>
+                    <div class="card-price">30K<span>/ 3 Desain</span></div>
+                </div>
+                <div class="card-desc">
+                    Terima beres 3 desain feed yang solid dan estetis. Lebih murah dari harga kopi susu *fancy*, tapi dampaknya bikin audiens sungkem.
+                </div>
+            </div>
+
+            <div class="card reveal delay-2">
+                <div class="card-header">
+                    <div class="card-title">Paket Sapu Bersih</div>
+                    <div class="card-price">20K<span>/ 6 Feed</span></div>
+                </div>
+                <div class="card-desc">
+                    Khusus buat feed yang udah terlanjur salah arah. Kita rapikan dan tata ulang 6 feed lamamu biar kembali ke jalan yang benar.
+                </div>
+            </div>
+
+            <div class="card reveal delay-3">
+                <div class="card-header">
+                    <div class="card-title">Paket Terserah</div>
+                    <div class="card-price">Custom</div>
+                </div>
+                <div class="card-desc">
+                    Punya ide liar atau butuh yang lain? Bebas. Kita diskusikan sampai ketemu titik cerah. Tenang, adminnya sopan dan bukan rentenir.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BANNER KHUSUS UMKM -->
+        <div class="umkm-banner reveal">
+            <div class="umkm-badge">Jalur Khusus UMKM</div>
+            <h3>Subsidi Visual Untuk Usaha Lokal.</h3>
+            <p>Kita tahu merintis usaha itu berdarah-darah. Biar urusan etalase digital kami yang bantu percantik agar jualanmu makin meroket.</p>
+            <div class="umkm-price">9K<span>/ Feed</span></div>
+            <div class="umkm-terms">
+                <strong>Syarat & Ketentuan:</strong><br>
+                Berlaku khusus untuk pelaku usaha. Wajib melampirkan foto identitas diri yang sah dan foto bukti usaha/toko/produk pada saat pemesanan.
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="cta-section reveal">
+            <div class="cta-text">
+                <h2>Mari Eksekusi.</h2>
+                <p>Jangan biarkan visualmu menghambat rezekimu. Konsultasi sekarang gratis, nggak akan digigit.</p>
+            </div>
+            <a href="https://wa.me/6280000000000" class="btn" target="_blank">Hubungi via WA</a>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT ANIMASI -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach((reveal) => {
+                if(!reveal.classList.contains("active")){
+                    observer.observe(reveal);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
